@@ -1,0 +1,39 @@
+diff --git a/composer.json b/composer.json
+index bf8a17c..1482f15 100644
+--- a/composer.json
++++ b/composer.json
+@@ -22,7 +22,7 @@
+ 		}
+ 	],
+ 	"require" : {
+-		"php" : ">=7.1.0",
++		"php" : ">=5.6",
+ 		"ext-curl" : "*",
+ 		"ext-dom"  : "*",
+ 		"psr/log" : "^1.0 || ^2.0 || ^3.0"
+diff --git a/source/CAS/AuthenticationException.php b/source/CAS/AuthenticationException.php
+index 803c889..89c6dbf 100644
+--- a/source/CAS/AuthenticationException.php
++++ b/source/CAS/AuthenticationException.php
+@@ -77,7 +77,7 @@ implements CAS_Exception
+             printf(
+                 $lang->getYouWereNotAuthenticated(),
+                 htmlentities($client->getURL()),
+-                $_SERVER['SERVER_ADMIN'] ?? ''
++                isset($_SERVER['SERVER_ADMIN']) ? $_SERVER['SERVER_ADMIN'] : ''
+             );
+         }
+ 
+diff --git a/source/CAS/Client.php b/source/CAS/Client.php
+index 8ca9711..89f02b6 100644
+--- a/source/CAS/Client.php
++++ b/source/CAS/Client.php
+@@ -188,7 +188,7 @@ class CAS_Client
+      *
+      * @see printf()
+      */
+-    private function printf(string $format, ...$values): void
++    private function printf($format, ...$values)
+     {
+         if (phpCAS::getVerbose()) {
+             printf($format, ...$values);

@@ -188,7 +188,7 @@ class CAS_Client
      *
      * @see printf()
      */
-    private function printf(string $format, ...$values): void
+    private function printf($format, ...$values)
     {
         if (phpCAS::getVerbose()) {
             printf($format, ...$values);

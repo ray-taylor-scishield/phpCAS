@@ -77,7 +77,7 @@ implements CAS_Exception
             printf(
                 $lang->getYouWereNotAuthenticated(),
                 htmlentities($client->getURL()),
-                $_SERVER['SERVER_ADMIN'] ?? ''
+                isset($_SERVER['SERVER_ADMIN']) ? $_SERVER['SERVER_ADMIN'] : ''
             );
         }
 
